@@ -23,7 +23,8 @@ class ListAvailableDatesFilterResponse implements ResponseFormFilterDtoInterface
     public function label(): string
     {
         /** @phpstan-ignore-next-line */
-        $dateLabel = (string)\IntlDateFormatter::create(locale: null, pattern: 'MMMM Y')
+        $dateLabel = (string)\IntlDateFormatter::create(locale: null, pattern: 'MMMM Y',
+            dateType: \IntlDateFormatter::FULL, timeType: \IntlDateFormatter::FULL)
             ->format(
                 \DateTimeImmutable::createFromFormat(
                     '!Ym',

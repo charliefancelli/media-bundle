@@ -18,7 +18,6 @@ final class LocalFilePathResolver implements FilePathResolverInterface
         if (!$path) {
             return $this->uploadDirectory;
         }
-
         return \sprintf('%s/%s', $this->uploadDirectory, \trim($path, '/'));
     }
 
@@ -32,7 +31,6 @@ final class LocalFilePathResolver implements FilePathResolverInterface
         if (!$path) {
             return \sprintf('%s/%s', $this->uploadDirectory, $breakpoint);
         }
-
         return \sprintf('%s/%s/%s', $this->uploadDirectory, $breakpoint, \trim($path, '/'));
 
     }
