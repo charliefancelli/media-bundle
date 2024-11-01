@@ -22,8 +22,12 @@ class FindMediaByIds
      * @param array<string> $ids
      * @return array<MediaResponse>
      */
-    public function __invoke(array $ids): array
+    public function __invoke(?array $ids): array
     {
+        if (empty($ids)) {
+            return [];
+        }
+
         $mediaIds = \array_map(static fn(string $id) => MediaId::fromString($id), $ids);
         $results        = $this->mediaRepository->findByIds(
             ...$mediaIds

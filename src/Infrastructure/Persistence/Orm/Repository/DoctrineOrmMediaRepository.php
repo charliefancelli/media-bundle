@@ -29,8 +29,8 @@ class DoctrineOrmMediaRepository extends ServiceEntityRepository implements Medi
 {
     /**
      * @param ManagerRegistry $registry
-     * @param \Ranky\SharedBundle\Filter\CriteriaBuilder\DoctrineCriteriaBuilderFactory $doctrineCriteriaBuilderFactory
-     * @param \Ranky\SharedBundle\Infrastructure\Persistence\Orm\UidMapperPlatform $uidMapperPlatform
+     * @param DoctrineCriteriaBuilderFactory $doctrineCriteriaBuilderFactory
+     * @param UidMapperPlatform $uidMapperPlatform
      * @param class-string $mediaEntity
      */
     public function __construct(
@@ -66,11 +66,16 @@ class DoctrineOrmMediaRepository extends ServiceEntityRepository implements Medi
      */
     public function findByIds(MediaId ...$ids): array
     {
-        $mediaIds        = \array_map(fn(MediaId $mediaId) => $this->uidMapperPlatform->convertToDatabaseValue(
+        $mediaIds = \array_map(fn (MediaId $mediaId) => $this->uidMapperPlatform->convertToDatabaseValue(
             $mediaId
         ), $ids);
-        $criteria        = MediaCriteria::default();
-        $orderPagination = $criteria->orderBy();
+
+        $ids = is_array($ids) ? $ids : [$ids];
+        $listIds = implode(',', array_map(fn (MediaId $id): string => "'".$id->toString()."'", $ids));
+
+        $criteria = MediaCriteria::default();
+        $orderPagination = $criteria->orderBy()
+            ->withField(sprintf('FIELD(%s.id, %s)', MediaCriteria::modelAlias(), $listIds));
 
         return $this
             ->createQueryBuilder('m')
@@ -83,6 +88,27 @@ class DoctrineOrmMediaRepository extends ServiceEntityRepository implements Medi
 
     public function filter(Criteria $criteria): array
     {
+        // - on va récupérer les ids si on les demande
+        $ids = [];
+        foreach ($criteria->filters() as $filter) {
+            if ($filter->field() === MediaCriteria::normalizeNameFields()['id']) {
+                /** @var MediaId[] $ids */
+                $ids = $filter->value();
+            }
+        }
+
+        // - si on a des ids on va changer le orderBy pour que les médias soient dans l'ordre des ids
+        if (!empty($ids)) {
+            $ids = is_array($ids) ? $ids : [$ids];
+            $listIds = implode(',', array_map(fn (MediaId $id): string => "'".$id->toString()."'", $ids));
+            $criteria = new MediaCriteria(
+                filters: $criteria->filters(),
+                offsetPagination: $criteria->offsetPagination(),
+                orderBy: $criteria->orderBy()
+                    ->withField(sprintf('FIELD(%s.id, %s)', MediaCriteria::modelAlias(), $listIds)),
+            );
+        }
+
         $queryBuilder = $this->createQueryBuilder($criteria::modelAlias());
 
         return $this->doctrineCriteriaBuilderFactory

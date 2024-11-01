@@ -19,11 +19,14 @@ class FindMediaByPaths
     }
 
     /**
-     * @param array<string> $paths
+     * @param null|array<string> $paths
      * @return array<MediaResponse>
      */
-    public function __invoke(array $paths): array
+    public function __invoke(?array $paths): array
     {
+        if (empty($paths)) {
+            return [];
+        }
         $results = $this->mediaRepository->findByFilePaths($paths);
 
         return $this->responseTransformer->mediaCollectionToArrayResponse($results);
