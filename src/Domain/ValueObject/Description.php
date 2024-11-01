@@ -27,8 +27,8 @@ final class Description
     {
         $this->alt = $alt;
         $this->title = $title ?? $alt;
-        $this->legend = $legend;
-        $this->copyright = $copyright;
+        $this->legend = empty($legend ?? '') ? null : $legend;
+        $this->copyright = empty($copyright ?? '') ? null : $copyright;
     }
 
     public function alt(): string

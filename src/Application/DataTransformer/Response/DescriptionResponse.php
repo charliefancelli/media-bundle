@@ -15,8 +15,8 @@ final class DescriptionResponse implements ResponseDtoInterface
     public function __construct(
         private readonly string $alt,
         private readonly string $title,
-        private readonly string $legend,
-        private readonly string $copyright,
+        private readonly ?string $legend,
+        private readonly ?string $copyright,
     )
     {
     }
@@ -41,18 +41,18 @@ final class DescriptionResponse implements ResponseDtoInterface
         return $this->title;
     }
 
-    public function legend(): string
+    public function legend(): ?string
     {
         return $this->legend;
     }
 
-    public function copyright(): string
+    public function copyright(): ?string
     {
         return $this->copyright;
     }
 
     /**
-     * @return array{alt: string, title: string}
+     * @return array{alt: string, title: string, legend: ?string, copyright: ?string}
      */
     public function toArray(): array
     {
@@ -65,7 +65,7 @@ final class DescriptionResponse implements ResponseDtoInterface
     }
 
     /**
-     * @return array{alt: string, title: string}
+     * @return array{alt: string, title: string, legend: ?string, copyright: ?string}
      */
     public function jsonSerialize(): array
     {
