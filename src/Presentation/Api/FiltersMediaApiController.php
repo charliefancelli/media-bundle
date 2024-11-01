@@ -22,7 +22,6 @@ class FiltersMediaApiController extends BaseMediaApiController
     public function __invoke(Request $request): JsonResponse
     {
         try {
-            dump($this->listFilter);
             return $this->json($this->listFilter->__invoke());
         } catch (\Throwable $throwable) {
             throw ApiProblemException::fromThrowable($throwable);
