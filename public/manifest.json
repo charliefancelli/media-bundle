@@ -1,9 +1,9 @@
 {
-  "bundles/rankymedia/ranky_media.css": "/bundles/rankymedia/ranky_media.css?v=292eec4e",
-  "bundles/rankymedia/ranky_media.js": "/bundles/rankymedia/ranky_media.js?v=292eec4e",
-  "bundles/rankymedia/react.17.0.2.js": "/bundles/rankymedia/react.17.0.2.js?v=292eec4e",
-  "bundles/rankymedia/ranky_media.vendors.css": "/bundles/rankymedia/ranky_media.vendors.css?v=292eec4e",
-  "bundles/rankymedia/ranky_media.vendors.js": "/bundles/rankymedia/ranky_media.vendors.js?v=292eec4e",
+  "bundles/rankymedia/ranky_media.css": "/bundles/rankymedia/ranky_media.css?v=b8a60d99",
+  "bundles/rankymedia/ranky_media.js": "/bundles/rankymedia/ranky_media.js?v=b8a60d99",
+  "bundles/rankymedia/react.17.0.2.js": "/bundles/rankymedia/react.17.0.2.js?v=b8a60d99",
+  "bundles/rankymedia/ranky_media.vendors.css": "/bundles/rankymedia/ranky_media.vendors.css?v=b8a60d99",
+  "bundles/rankymedia/ranky_media.vendors.js": "/bundles/rankymedia/ranky_media.vendors.js?v=b8a60d99",
   "bundles/rankymedia/images/placeholder/image.jpg": "/bundles/rankymedia/images/placeholder/image.jpg",
   "bundles/rankymedia/images/placeholder/video.jpg": "/bundles/rankymedia/images/placeholder/video.jpg",
   "bundles/rankymedia/images/placeholder/audio.jpg": "/bundles/rankymedia/images/placeholder/audio.jpg",
@@ -13,6 +13,7 @@
   "bundles/rankymedia/images/placeholder/tiff.jpg": "/bundles/rankymedia/images/placeholder/tiff.jpg",
   "bundles/rankymedia/images/placeholder/application.jpg": "/bundles/rankymedia/images/placeholder/application.jpg",
   "bundles/rankymedia/images/placeholder/text.jpg": "/bundles/rankymedia/images/placeholder/text.jpg",
+  "bundles/rankymedia/uppy/locales/fr_FR.min.js": "/bundles/rankymedia/uppy/locales/fr_FR.min.js",
   "bundles/rankymedia/uppy/locales/en_US.min.js": "/bundles/rankymedia/uppy/locales/en_US.min.js",
   "bundles/rankymedia/images/choose-image.png": "/bundles/rankymedia/images/choose-image.png"
 }

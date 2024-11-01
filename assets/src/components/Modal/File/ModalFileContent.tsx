@@ -18,6 +18,8 @@ type ModalFileForm = {
   name: string;
   alt: string;
   title: string;
+  legend?: string;
+  copyright?: string;
 };
 
 const ModalFileContent = ({ onDelete }: ModalFileContentType): React.ReactElement => {
@@ -31,6 +33,8 @@ const ModalFileContent = ({ onDelete }: ModalFileContentType): React.ReactElemen
     name: currentMedia.file.basename,
     alt: currentMedia.description.alt,
     title: currentMedia.description.title,
+    legend: currentMedia.description.legend,
+    copyright: currentMedia.description.copyright,
   });
 
   const onSubmit = async (event: { preventDefault: () => void; }) => {
@@ -50,6 +54,8 @@ const ModalFileContent = ({ onDelete }: ModalFileContentType): React.ReactElemen
         name: data.file.basename,
         alt: data.description.alt,
         title: data.description.title,
+        legend: data.description.legend,
+        copyright: data.description.copyright,
       },
     });
     mediaQuery.update(data);
@@ -142,24 +148,33 @@ const ModalFileContent = ({ onDelete }: ModalFileContentType): React.ReactElemen
           </tbody>
         </table>
         <form
-          name="media"
-          id="ranky-media-file__form"
-          method="POST"
-          autoComplete="off"
-          encType="multipart/form-data"
-          onSubmit={onSubmit}
+            name="media"
+            id="ranky-media-file__form"
+            method="POST"
+            autoComplete="off"
+            encType="multipart/form-data"
+            onSubmit={onSubmit}
         >
           <div className="input-group">
-            <label htmlFor="name"><Trans message="form_name" /></label>
-            <input type="text" name="name" id="ranky-media-file__form__name" value={form.name} onChange={onChangeHandler} required autoComplete="off" />
+            <label htmlFor="name"><Trans message="form_name"/></label>
+            <input type="text" name="name" id="ranky-media-file__form__name" value={form.name}
+                   onChange={onChangeHandler} required autoComplete="off"/>
             <span className="input-group-text">.{currentMedia.file.extension}</span>
           </div>
-          <label htmlFor="alt"><Trans message="form_alt" /></label>
-          <input type="text" name="alt" id="ranky-media-file__form__alt" value={form.alt} onChange={onChangeHandler} required />
-          <label htmlFor="title"><Trans message="form_title" /></label>
-          <input type="text" name="title" id="ranky-media-file__form__title" value={form.title} onChange={onChangeHandler} required />
-          <input type="hidden" name="id" id="ranky-media-file__form__id" defaultValue={form.id} />
-          <input type="submit" disabled={disableSubmit} value={translator.trans('form_save')} />
+          <label htmlFor="alt"><Trans message="form_alt"/></label>
+          <input type="text" name="alt" id="ranky-media-file__form__alt" value={form.alt} onChange={onChangeHandler}
+                 required/>
+          <label htmlFor="title"><Trans message="form_title"/></label>
+          <input type="text" name="title" id="ranky-media-file__form__title" value={form.title}
+                 onChange={onChangeHandler} required/>
+          <label htmlFor="legend"><Trans message="form_legend"/></label>
+          <input type="text" name="legend" id="ranky-media-file__form__legend" value={form.legend}
+                 onChange={onChangeHandler}/>
+          <label htmlFor="copyright"><Trans message="form_copyright"/></label>
+          <input type="text" name="copyright" id="ranky-media-file__form__copyright" value={form.copyright}
+                 onChange={onChangeHandler}/>
+          <input type="hidden" name="id" id="ranky-media-file__form__id" defaultValue={form.id}/>
+          <input type="submit" disabled={disableSubmit} value={translator.trans('form_save')}/>
         </form>
       </div>
     </div>

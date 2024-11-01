@@ -30,7 +30,12 @@ class UpdateMedia
 
         $media            = $this->mediaRepository->getById(MediaId::fromString($updateMediaRequest->id()));
         $userIdentifierVO = new UserIdentifier($userIdentifier);
-        $description      = new Description($updateMediaRequest->alt(), $updateMediaRequest->title());
+        $description      = new Description(
+            $updateMediaRequest->alt(),
+            $updateMediaRequest->title(),
+            $updateMediaRequest->legend(),
+            $updateMediaRequest->copyright()
+        );
 
         $media->updateDescription($description, $userIdentifierVO);
         $this->mediaRepository->save($media);

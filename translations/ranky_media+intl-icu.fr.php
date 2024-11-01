@@ -37,6 +37,8 @@ return [
     'form_name'                    => 'Nom',
     'form_alt'                     => 'Texte alternatif',
     'form_title'                   => 'Titre',
+    'form_legend'                  => 'Légende',
+    'form_copyrigth'               => 'Droits d\'auteur',
     'form_save'                    => 'Sauvegarder',
     'delete'                       => 'Supprimer',
     'modal_title'                  => 'Détails du fichier {file_name} <small>id: {id}</small>',

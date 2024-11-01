@@ -19,6 +19,8 @@ export type Dimension = {
 export type Description = {
   alt: string
   title: string
+  legend?: string
+  copyright?: string
 };
 
 export type Breakpoint = 'large' | 'medium' | 'small' | 'xsmall';

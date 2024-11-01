@@ -12,7 +12,12 @@ use Ranky\SharedBundle\Application\Dto\ResponseDtoInterface;
 final class DescriptionResponse implements ResponseDtoInterface
 {
 
-    public function __construct(private readonly string $alt, private readonly string $title)
+    public function __construct(
+        private readonly string $alt,
+        private readonly string $title,
+        private readonly string $legend,
+        private readonly string $copyright,
+    )
     {
     }
 
@@ -20,7 +25,9 @@ final class DescriptionResponse implements ResponseDtoInterface
     {
         return new self(
             $description->alt(),
-            $description->title()
+            $description->title(),
+            $description->legend(),
+            $description->copyright(),
         );
     }
 
@@ -34,6 +41,16 @@ final class DescriptionResponse implements ResponseDtoInterface
         return $this->title;
     }
 
+    public function legend(): string
+    {
+        return $this->legend;
+    }
+
+    public function copyright(): string
+    {
+        return $this->copyright;
+    }
+
     /**
      * @return array{alt: string, title: string}
      */
@@ -42,6 +59,8 @@ final class DescriptionResponse implements ResponseDtoInterface
         return [
             'alt' => $this->alt(),
             'title' => $this->title(),
+            'legend' => $this->legend(),
+            'copyright' => $this->copyright(),
         ];
     }
 

@@ -47,6 +47,10 @@ Encore.setOutputPath(publicPath)
             from: './node_modules/@uppy/locales/dist',
             pattern: /\.(js)$/,
             to: 'uppy/locales/[name].[ext]',
+        },
+        {
+            from: './scripts/locales',
+            to: 'uppy/locales/[name].[ext]',
         }
     ])
     .enableTypeScriptLoader(function callback(tsConfig) {

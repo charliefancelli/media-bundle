@@ -7,7 +7,7 @@ use Ranky\SharedBundle\Application\Dto\RequestDtoInterface;
 use Ranky\SharedBundle\Domain\ValueObject\MappingTrait;
 
 /**
- * @phpstan-type UpdateMediaRequestArray array{id: string, name: string, alt: string, title: string}
+ * @phpstan-type UpdateMediaRequestArray array{id: string, name: string, alt: string, title: string, legend: string|null, copyright: string|null}
  */
 class UpdateMediaRequest implements RequestDtoInterface
 {
@@ -17,7 +17,9 @@ class UpdateMediaRequest implements RequestDtoInterface
         private readonly string $id,
         private readonly string $name,
         private readonly string $alt,
-        private readonly string $title
+        private readonly string $title,
+        private readonly ?string $legend,
+        private readonly ?string $copyright,
     ) {}
 
     public function id(): string
@@ -40,6 +42,16 @@ class UpdateMediaRequest implements RequestDtoInterface
         return $this->title;
     }
 
+    public function legend(): ?string
+    {
+        return $this->legend;
+    }
+
+    public function copyright(): ?string
+    {
+        return $this->copyright;
+    }
+
     /**
      * @param array<string, mixed> $data
      * @return self
@@ -51,6 +63,8 @@ class UpdateMediaRequest implements RequestDtoInterface
             self::getString($data, 'name'),
             self::getString($data, 'alt'),
             self::getString($data, 'title'),
+            self::getString($data, 'legend'),
+            self::getString($data, 'copyright'),
         );
     }
 
@@ -64,6 +78,8 @@ class UpdateMediaRequest implements RequestDtoInterface
             'name' => $this->name,
             'alt' => $this->alt,
             'title' => $this->title,
+            'legend' => $this->legend,
+            'copyright' => $this->copyright,
         ];
     }
 

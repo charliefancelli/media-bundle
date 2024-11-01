@@ -17,10 +17,18 @@ final class Description
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private readonly string $title;
 
-    public function __construct(string $alt, ?string $title = null)
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    private readonly ?string $legend;
+
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    private readonly ?string $copyright;
+
+    public function __construct(string $alt, ?string $title = null, ?string $legend = null, ?string $copyright = null)
     {
         $this->alt = $alt;
         $this->title = $title ?? $alt;
+        $this->legend = $legend;
+        $this->copyright = $copyright;
     }
 
     public function alt(): string
@@ -33,6 +41,13 @@ final class Description
         return $this->title;
     }
 
+    public function legend(): ?string
+    {
+        return $this->legend;
+    }
 
-
+    public function copyright(): ?string
+    {
+        return $this->copyright;
+    }
 }

@@ -47,6 +47,8 @@ export type TranslationsType = {
   form_name: string;
   form_alt: string;
   form_title: string;
+  form_legend: string;
+  form_copyright: string;
   form_save: string;
   modal_close: string;
   modal_next: string;
